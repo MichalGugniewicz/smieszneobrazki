@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Losowy Obrazek</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="card">
+    <h1>Losowy obrazek 🎲</h1>
+    <img id="randomImage" src="" alt="Losowy obrazek">
+    <div class="controls">
+      <button onclick="loadRandomImage()">Wylosuj ponownie</button>
+    </div>
+  </div>
+
+  <script>
+    async function loadRandomImage() {
+      try {
+        const res = await fetch("/random-image");
+        const data = await res.json();
+        document.getElementById("randomImage").src = data.image;
+      } catch (err) {
+        console.error("Błąd:", err);
+      }
+    }
+
+    // wczytaj obrazek przy starcie strony
+    loadRandomImage();
+  </script>
+</body>
+</html>
